@@ -1,0 +1,44 @@
+.distDiv {
+    margin: 20px;
+    padding: 20px;
+    width: fit-content;
+    border-radius: 5px;
+    margin-left: 15%;
+  }
+
+  .distDiv table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 20px;
+  }
+  
+  .distDiv th,
+  .distDiv td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .distDiv th {
+    background-color: #2876b1;
+    color: white;
+  }
+  
+  .distDiv tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+
+  .filterDiv {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
+  .filterDiv select{
+    width: fit-content;
+    height: 30px;
+    border-radius: 5px;
+    border: 1px solid #2876b1;
+    margin-right: 10px;
+  }
