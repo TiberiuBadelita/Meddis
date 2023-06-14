@@ -8,6 +8,7 @@ using stable_matching_app.Application;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using stable_matching_app.API.Service;
 
 var MyRules = "IMakeTheRules";
 
@@ -33,6 +34,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddApplicationServices();
 
 builder.Services.AddHttpContextAccessor();
+
+builder.Services.AddScoped<SeedDBService>();
 
 builder.Services.AddIdentity<User, IdentityRole>()
     .AddEntityFrameworkStores<DatabaseContext>();

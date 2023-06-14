@@ -2,7 +2,6 @@
 using stable_matching_app.API.Dtos;
 using stable_matching_app.Domain.Models;
 using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -256,10 +255,11 @@ namespace stable_matching_app.API.Controllers
 
         [HttpPut]
         /*[Authorize]*/
-        [Route("update-user")]
-        public async Task<IActionResult> UpdateUser([FromBody] User user)
+        [Route("{id}")]
+        public async Task<IActionResult> UpdateUser(string id, [FromBody] User user)
         {
-            var userExists = await _userManager.FindByIdAsync(user.Id);
+
+            var userExists = await _userManager.FindByIdAsync(id);
             if (userExists == null)
             {
                 return NotFound();

@@ -9,6 +9,8 @@
 
         public string? Role { get; set; }
 
+        public string? Email { get; set; }
+
         public string? DoctorHospitalPreferences { get; set; }
 
         public string? HospitalSpecializationPreferences { get; set; }

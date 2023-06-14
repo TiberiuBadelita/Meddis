@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using stable_matching_app.API.Service;
 using System.Reflection;
 
 namespace stable_matching_app.Application
@@ -15,7 +16,7 @@ namespace stable_matching_app.Application
 
             services.AddMediatR(assemblies);
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
-         
+
             return services;
         }
     }
