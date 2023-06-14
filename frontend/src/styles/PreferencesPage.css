@@ -6,7 +6,7 @@ form {
     width: 90%;
     margin-top: 20px;
   }
-  
+
   label {
     font-weight: bold;
   }
@@ -89,16 +89,30 @@ form {
   .col {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
+    row-gap: 10px;
     width: calc(50% - 35px);
   }
 
   .scrollable-container {
-    height: 400px;
+    height: 350px;
     padding: 10px;
     overflow-y: auto;
     overflow-x: hidden;
+    }
+
+    .scrollable-container::-webkit-scrollbar {
+      width: 0.5em;
+    }
+    
+    .scrollable-container::-webkit-scrollbar-track {
+      background-color: transparent; 
+    }
+    
+    .scrollable-container::-webkit-scrollbar-thumb {
+      background-color: #2196f3; 
+      border-radius: 0.25em; 
     }
 
  .firstLabel{
@@ -114,4 +128,19 @@ form {
     text-align: center;
     width: 85%;
     font-family: Arial, sans-serif;
+}
+
+.buttonDiv{
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 20px;
 }

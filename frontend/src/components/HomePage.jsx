@@ -3,6 +3,7 @@ import '../styles/Styles.css';
 import '../styles/HomePage.css';
 import WithAuth from "./WithAuth";
 import MyNavbar from './Navbar';
+import Modal from "./Modal";
 import { useNavigate } from "react-router-dom";
 import Cookies from 'js-cookie';
 import jwt from 'jwt-decode';
@@ -12,6 +13,7 @@ import axios from 'axios';
 function HomePage() {
     const location = window.location.pathname;
     const generateService = "https://localhost:7053/api/allocations/generate";
+    const generateWithIndifferenceService = "https://localhost:7053/api/allocations/generate-with-indifference";
     const getAllUsersService = "https://localhost:7053/api/users";
     const deleteUserByIdService = "https://localhost:7053/api/users/";
     const getDeadlineService = "https://localhost:7053/api/allocations/get-deadline";
@@ -19,6 +21,8 @@ function HomePage() {
     const nav = useNavigate();
     const [accounts, setAccounts] = useState([]);
     const [deadline, setDeadline] = useState("");
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [updateAccount, setUpdateAccount] = useState({});
 
     useEffect(() => {
         const fetchAccounts = async () => {
@@ -58,9 +62,15 @@ function HomePage() {
         }
     };
 
-    const handleUpdate = (id) => {
-        console.log(`Updating account ${id}`);
+    const handleUpdate = (account) => {
+        setIsModalOpen(true);
+        setUpdateAccount(account);
+      };
+    
+    const handleCloseModal = () => {
+        setIsModalOpen(false);
     };
+  
 
     const handleSetDeadline = async () => {
         let deadline = prompt("Please enter the deadline for filling the preferences form (YYYY-MM-DD):");
@@ -85,7 +95,7 @@ function HomePage() {
 
     const handleGenerateAllocations = async () => {
         try {
-            await axios.post(generateService);
+            await axios.post(generateWithIndifferenceService);
             alert('Allocations have been generated.');
         }
         catch (error) {
@@ -120,6 +130,7 @@ function HomePage() {
                 <div className="mainDiv">
                     <div className="dashboard">
                         <h1>Admin Dashboard</h1>
+                        <div><b>Search for a user:</b> <input type="text" placeholder="Search.." ></input></div>
                         <table className="accountsTable">
                             <thead>
                                 <tr>
@@ -135,18 +146,26 @@ function HomePage() {
                                         <td>{account.role}</td>
                                         <td>
                                             <button className="deleteBtn" onClick={() => handleDelete(account.id)}>Delete</button>
-                                            <button className="updateBtn" onClick={() => handleUpdate(account.id)}>Update</button>
+                                            <button className="updateBtn" onClick={() => handleUpdate(account)}>Update</button>
                                         </td>
                                     </tr>
                                 ))}
                             </tbody>
                         </table>
+
                         <div className="buttonGroup">
+                            <button className="deadlineBtn">Import Data</button>
                             <button className="deadlineBtn" onClick={handleSetDeadline}>Set Form Deadline</button>
                             <p><b>Current Deadline: {deadline}</b></p>
+                            <select name="algorithms" className="selectBtn">
+                                <option value="">Select an algorithm</option>
+                                <option value="Doctor">Classic stable matching</option>
+                                <option value="Hospital">Stable matching with indifference </option>
+                            </select>
                             <button className="generateBtn" onClick={handleGenerateAllocations}>Generate Allocations</button>
                         </div>
                     </div>
+                    <Modal isOpen={isModalOpen} onClose={handleCloseModal} account={updateAccount}/>
                 </div>
 
             )}

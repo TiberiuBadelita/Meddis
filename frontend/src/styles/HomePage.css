@@ -52,6 +52,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    align-items: baseline;
     width: 100%;
   }
   
@@ -112,4 +113,42 @@
   
   .generateBtn:hover {
     background-color: #64b5f6;
+  }
+
+  .selectBtn{
+    background-color: #2196f3;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 25px;
+    width: fit-content;
+    align-content: center;
+  }
+
+  .accountsTable tbody {
+    display: block;
+    height: 400px;
+    overflow-y: auto;
+  }
+
+  .accountsTable tr{
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+  }
+
+  tbody::-webkit-scrollbar {
+    width: 0.5em;
+  }
+  
+  tbody::-webkit-scrollbar-track {
+    background-color: transparent; 
+  }
+  
+  tbody::-webkit-scrollbar-thumb {
+    background-color: #2196f3; 
+    border-radius: 0.25em; 
   }

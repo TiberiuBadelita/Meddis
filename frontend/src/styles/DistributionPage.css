@@ -1,9 +1,22 @@
+.infoMessage {
+  background-color: #00a2ff15;
+  border: 1px solid rgb(0, 162, 255)fff;
+  padding: 20px;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-top: 20%;
+  margin-right: 8%;
+}
+
 .distDiv {
     margin: 20px;
     padding: 20px;
     width: fit-content;
     border-radius: 5px;
-    margin-left: 15%;
+    margin-left: 5%;
+    margin-right: 10%;
   }
 
   .distDiv table {
@@ -41,4 +54,36 @@
     border-radius: 5px;
     border: 1px solid #2876b1;
     margin-right: 10px;
+  }
+
+  .distDiv label{
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  .distDiv tbody {
+    display: block;
+    height: 400px;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  .distDiv tr{
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+  }
+
+  tbody::-webkit-scrollbar {
+    width: 0.5em;
+  }
+  
+  tbody::-webkit-scrollbar-track {
+    background-color: transparent; 
+  }
+  
+  tbody::-webkit-scrollbar-thumb {
+    background-color: #2196f3; 
+    border-radius: 0.25em; 
   }

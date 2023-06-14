@@ -150,8 +150,29 @@ const PreferencesPage = () => {
       </div>
       {role === "Doctor" ? (
         <form onSubmit={handleDoctorsSubmit}>
-          <div className="row">
-            <div className="col">
+          <div className="col">
+              
+          <label className="firstLabel">Your Specialization:</label>
+              <div>
+                {qualificationPreferences.map((qualification, index) => (
+                  <div key={index}>
+                      <select
+                        className="center"
+                        value={qualification}
+                        onChange={(event) => handleQualificationPreferenceChange(index, event)}
+                      >
+                        <option value="">Select a specialization</option>
+                        {qualifications.map((qualification) => (
+                          <option key={qualification} value={qualification}>
+                            {qualification}
+                          </option>
+                        ))}
+                      </select>
+                  </div>
+                ))}
+              </div>
+
+
               <label className="firstLabel">Hospital Preferences:</label>
               <div className="scrollable-container">
                 {hospitalPreferences.map((hospital, index) => (
@@ -159,6 +180,7 @@ const PreferencesPage = () => {
                     <label>
                       Hospital {index + 1}:
                       <select
+                        className="center"
                         value={hospital}
                         onChange={(event) => handleHospitalPreferenceChange(index, event)}
                       >
@@ -172,7 +194,7 @@ const PreferencesPage = () => {
                     </label>
 
                     {index === hospitalPreferences.length - 1 && (
-                      <div>
+                      <div className="buttonDiv">
                         <button type="button" onClick={() => handleRemovePreferenceClick(index)}>
                           -
                         </button>
@@ -184,42 +206,10 @@ const PreferencesPage = () => {
                   </div>
                 ))}
               </div>
-            </div>
-            <div className="col">
-              <label className="firstLabel">Specialization Preferences:</label>
-              <div className="scrollable-container">
-                {qualificationPreferences.map((qualification, index) => (
-                  <div key={index}>
-                    <label>
-                      Qualification {index + 1}:
-                      <select
-                        value={qualification}
-                        onChange={(event) => handleQualificationPreferenceChange(index, event)}
-                      >
-                        <option value="">Select a specialization</option>
-                        {qualifications.map((qualification) => (
-                          <option key={qualification} value={qualification}>
-                            {qualification}
-                          </option>
-                        ))}
-                      </select>
-                    </label>
-
-                    {index === qualificationPreferences.length - 1 && (
-                      <div>
-                        <button type="button" onClick={() => handleRemoveSpecialtyClick(index)}>
-                          -
-                        </button>
-                        <button type="button" onClick={handleAddSpecialtyClick}>
-                          +
-                        </button>
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
-
-            </div>
+           
+          
+             
+            
           </div>
           <div>
             <label>Exam Grade: </label>
@@ -266,7 +256,7 @@ const PreferencesPage = () => {
                 </label>
               </div>
               {index === qualificationPreferences.length - 1 && (
-                <div>
+                <div className="buttonDiv">
                   <button type="button" onClick={handleRemoveSpecialtyClick}>-</button>
                   <button type="button" onClick={handleAddSpecialtyClick}>+</button>
                 </div>

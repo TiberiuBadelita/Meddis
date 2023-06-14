@@ -26,7 +26,7 @@ function AccountPage() {
                 if (hospitals!=null){
                     for (let i = 0; i < hospitals.length; i++) {
                         const hospitalUser = await axios.get(getUserByIdService + hospitals[i]);
-                        hospitals[i] = hospitalUser.data.firstName + " " + hospitalUser.data.lastName;
+                        hospitals[i] = (hospitalUser.data.firstName === null ? " " : hospitalUser.data.firstName) + " " + hospitalUser.data.lastName;
                     }
                 }
                 setHospitals(hospitals);
@@ -61,10 +61,14 @@ function AccountPage() {
                             <label htmlFor="lastName">Last Name:</label>
                             <input type="text" id="lastName" name="lastName" value={user.lastName}/>
                         </div>
-                        <div >
+                        <div className="profileField">
+                            <label htmlFor="email">Email:</label>
+                            <input type="text" id="email" name="email" value={user.email}/>
+                        </div>
+                        <div className="profileField">
                             <label>Your last preferences set:</label>
                             <div>
-                                <i><b>Hospital Preferences:</b></i>
+                                <b>Hospital preferences:</b>
 
                                 {hospitals.map((hospital) => (
                                     <div>
@@ -72,14 +76,14 @@ function AccountPage() {
                                     </div>
                                 ))}
 
-                                <i><b>Specialization Preferences:</b></i> 
+                                <b>Doctor's specialization:</b> 
                                 {specializations.map((specialization) => (
                                     <div>
                                         {specialization}
                                     </div>
                                 ))}
 
-                                <i><b>ExamGrade:</b></i> {user.examGrade}
+                                <b>Exam grade:</b> {user.examGrade>100 ? user.examGrade/100: user.examGrade/10}
                             </div>
                         </div>
                     </div>
@@ -91,13 +95,17 @@ function AccountPage() {
                             <label htmlFor="name">Hospital's Name:</label>
                             <input type="text" id="name" name="name" value={user.lastName}/>
                         </div>
-                        <div >
+                        <div className="profileField">
+                            <label htmlFor="email">Email:</label>
+                            <input type="text" id="email" name="email" value={user.email}/>
+                        </div>
+                        <div className="profileField">
                             <label>Your last preferences set:</label>
                             <div>
-                                <i><b>Specialization Preferences:</b></i> 
+                                <b>Specialization Preferences:</b>
                                 {specializations.map((specialization) => (
                                     <div>
-                                        {specialization}
+                                        {specialization.split("-")[0] + " : " + specialization.split("-")[1] + (specialization.split("-")[1] == 1 ? " place available": " places available")} 
                                     </div>
                                 ))}
 

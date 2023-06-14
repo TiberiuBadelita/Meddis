@@ -29,7 +29,7 @@ function DistributionPage(){
 
             const doctorName = "Dr. " + doctorResponse.data.firstName + " " + doctorResponse.data.lastName;
             
-            const hospitalName = hospitalResponse.data.firstName + " " + hospitalResponse.data.lastName;
+            const hospitalName = (hospitalResponse.data.firstName === null ? " " : hospitalResponse.data.firstName) + " " + hospitalResponse.data.lastName;
 
             doctorsArray.push({ name: doctorName, hospital: hospitalName, specialization: response.data[i].specialization});
           }
@@ -43,7 +43,7 @@ function DistributionPage(){
 
       
       const specialties = [
-        "All Specialties",
+        "All Specializations",
         "Anesthesiology", "Cardiology", "Dermatology", "Emergency medicine",
         "Endocrinology", "Gastroenterology", "General surgery", "Hematology",
         "Infectious disease", "Internal medicine", "Neurology",
@@ -54,7 +54,7 @@ function DistributionPage(){
           
      
         const [selectedHospital, setSelectedHospital] = useState("");
-        const [selectedSpecialty, setSelectedSpecialty] = useState("All Specialties");
+        const [selectedSpecialty, setSelectedSpecialty] = useState("All Specializations");
       
         const handleHospitalChange = (event) => {
           setSelectedHospital(event.target.value);
@@ -85,7 +85,7 @@ function DistributionPage(){
               );
         
         const finalFilteredDoctors =
-          selectedSpecialty === "All Specialties"
+          selectedSpecialty === "All Specializations"
             ? searchedDoctors
             : searchedDoctors.filter((doctor) => doctor.specialization === selectedSpecialty);
         
@@ -93,6 +93,14 @@ function DistributionPage(){
         return (
           <div>
             {location !== "/login" && <MyNavbar/>}
+            {finalFilteredDoctors.length === 0 ? (
+            
+            <div className="mainDiv">
+            <h1 className="infoMessage">Allocations are not available yet</h1>
+            </div>
+
+
+            ) : (
             <div className="mainDiv">
               <div className="distDiv">
                 <h1>Doctors Distribution to Hospitals</h1>
@@ -106,7 +114,7 @@ function DistributionPage(){
                       </option>
                     ))}
                   </select>
-                  <label htmlFor="specialty-select">Select a specialty:</label>
+                  <label htmlFor="specialty-select">Select a specialization:</label>
                   <select id="specialty-select" onChange={handleSpecialtyChange}>
                     {specialties.map((specialty) => (
                       <option key={specialty} value={specialty}>
@@ -136,6 +144,7 @@ function DistributionPage(){
                 </table>
               </div>
             </div>
+            )}
           </div>
         );
       
