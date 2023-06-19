@@ -87,3 +87,47 @@
     background-color: #2196f3; 
     border-radius: 0.25em; 
   }
+
+  @media screen and (max-width: 600px) {
+
+    .distDiv {
+      margin-top: 20%;
+      margin-right: 8%;
+    }
+
+    .distDiv h1{
+      font-size: 30px;
+    }
+
+    .distDiv table {
+      width: 100%;
+    }
+
+    .distDiv th, .distDiv td {
+      padding: 5px;
+      font-size: 12px;
+    }
+
+    .distDiv label{
+      font-size: 14px;
+    }
+
+    .distDiv tbody {
+      height: 300px;
+    }
+
+    .infoMessage {
+      margin-top: 30%;
+    }
+
+    .filterDiv {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .filterDiv select{
+      width: 50%;
+      margin-bottom: 10px;
+    }
+
+  }

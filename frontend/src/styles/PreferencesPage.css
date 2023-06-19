@@ -144,3 +144,40 @@ form {
   width: 100%;
   margin-top: 20px;
 }
+
+@media screen and (max-width:600px){
+
+  .introDiv2{
+    margin-top: 10vh;
+    width: 75%;
+    align-self: center;
+  }
+
+  .row{
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .col{
+    width: 100%;
+  }
+
+  .rowH{
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .introDiv2{
+    width: 100%;
+  }
+
+  .buttonDiv{
+    flex-direction: row;
+    width: 100%;
+  }
+
+  .center{
+    flex-direction: column;
+    width: 100%;
+  }
+}
